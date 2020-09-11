@@ -69,6 +69,7 @@ namespace UMApi.Controllers
         }
 
         //GET
+        [AllowAnonymous]
         [HttpGet("{id}", Name = "GetById")]
 
         public ActionResult<ReadUserDto> GetById (int id)

@@ -44,7 +44,7 @@ namespace UMApi
             services.AddDbContext<UMContext>
               (opt => opt.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+            services.AddAutoMapper(typeof(Startup));
             //appSettings
             services.AddOptions();
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -87,7 +87,10 @@ namespace UMApi
             });
 
             IdentityModelEventSource.ShowPII = true; //To show detail of error and see the problem
+            
+            
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRoleService, RoleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

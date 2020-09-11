@@ -19,5 +19,7 @@ namespace UMApi.Dtos
 
         [Required]
         public string Password { get; set; }
+
+        public int RoleId { get; set; }
     }
 }

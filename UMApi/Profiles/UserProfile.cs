@@ -14,7 +14,9 @@ namespace UMApi.Profiles
         public UserProfile() {
             // from type A to type B
             CreateMap<CreateUserDto, User>();
-            CreateMap<User, ReadUserDto>();
+            CreateMap<Role, CreateRoleDto>()/*.ForMember(dest => dest.RoleName, opt => opt.MapFrom(src => src.RoleName))*/;
+            CreateMap<User, ReadUserDto>().ForMember(dest => dest.Role, opt => opt.MapFrom(src => src.Role));
+            CreateMap<CreateRoleDto, Role>();
         }
     }
 }
