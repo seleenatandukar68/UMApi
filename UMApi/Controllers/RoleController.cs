@@ -42,9 +42,9 @@ namespace UMApi.Controllers
             return NotFound();
         }
         //POST 
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("Create")]
-        public ActionResult CreateRole(CreateRoleDto roleDto)
+        public ActionResult CreateRole([FromBody] CreateRoleDto roleDto)
         {
             var userModel = _mapper.Map<Role>(roleDto);
 
@@ -52,10 +52,10 @@ namespace UMApi.Controllers
             try
             {
                 // create user
-                _roleService.Create(userModel);
-                _roleService.SaveChanges();
+               Role role = _roleService.Create(userModel);
+               _roleService.SaveChanges();
                
-                return CreatedAtAction(nameof(GetById), new { id = roleDto.Id }, roleDto);
+                return CreatedAtAction(nameof(GetById), new { id = role.Id }, roleDto);
 
             }
             catch (AppException ex)
@@ -63,6 +63,30 @@ namespace UMApi.Controllers
                 // return error message if there was an exception
                 return BadRequest(new { message = ex.Message });
             }
+
+        }
+        //[AllowAnonymous]
+        [HttpGet]
+        public ActionResult<IEnumerable<Role>> GetAll()
+        {
+            var roleList = _roleService.GetAll();
+            return Ok(_mapper.Map<IEnumerable<CreateRoleDto>>(roleList));
+        }
+
+        //PUT {id}
+        [HttpPut("{id}")]
+       // [AllowAnonymous]
+        public ActionResult Update(int id, CreateRoleDto roleDtoUpt)
+        {
+            var roleModel = _roleService.GetById(id);
+            if (roleModel == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(roleDtoUpt, roleModel);
+            _roleService.Update(roleModel);
+            _roleService.SaveChanges();
+            return NoContent();
 
         }
     }

@@ -131,7 +131,7 @@ namespace UMApi.Migrations
                         .HasForeignKey("MainMenuId");
 
                     b.HasOne("UMApi.Models.Role", "Role")
-                        .WithMany()
+                        .WithMany("Subs")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -69,7 +69,7 @@ namespace UMApi.Controllers
         }
 
         //GET
-        [AllowAnonymous]
+        
         [HttpGet("{id}", Name = "GetById")]
 
         public ActionResult<ReadUserDto> GetById (int id)
@@ -81,8 +81,9 @@ namespace UMApi.Controllers
             }
             return NotFound();
         }
-        //GET ALL
 
+        //GET ALL
+       
         [HttpGet]
         public ActionResult<IEnumerable<ReadUserDto>> GetAll()
         {
@@ -145,5 +146,7 @@ namespace UMApi.Controllers
             _userService.SaveChanges();
             return Ok("Deleted");
         }
+
+ 
     }
 }

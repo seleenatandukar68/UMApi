@@ -12,7 +12,6 @@ namespace UMApi.Dtos
        
         public string MenuName { get; set; }
 
-        [DataMember]
-        public ICollection<SubDto> Subs { get; set; }
+        
     }
 }

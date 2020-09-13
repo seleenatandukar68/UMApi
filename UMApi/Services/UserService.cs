@@ -76,7 +76,7 @@ namespace UMApi.Services
 
         public User GetById(int id)
         {
-            User user = _dbContext.Users.Include(u => u.Role).Where(u => u.Id == id).FirstOrDefault();
+            User user = _dbContext.Users.Include(u => u.Role).ThenInclude(r => r.Subs).ThenInclude(s => s.MainMenu).Where(u => u.Id == id).FirstOrDefault();
             return user;
         }
 
@@ -132,6 +132,7 @@ namespace UMApi.Services
 
             oldUser.PasswordHash = passwordHash;
             oldUser.PasswordSalt = passwordSalt;
+            oldUser.RoleId = user.RoleId;
             _dbContext.Entry(oldUser).State = EntityState.Modified;
         }
 

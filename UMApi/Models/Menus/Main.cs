@@ -12,6 +12,6 @@ namespace UMApi.Models.Menus
         [Required]
         public string MenuName { get; set; }
 
-        public ICollection <Sub> Subs { get; set; }
+        public virtual ICollection <Sub> Subs { get; set; }
     }
 }

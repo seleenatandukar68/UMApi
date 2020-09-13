@@ -13,12 +13,11 @@ namespace UMApi.Models.Menus
 
         public string Action { get; set; }
 
-        public int MenuId { get; set; }
-
-        public Main MainMenu { get; set; }
+        public int MainMenuId { get; set; }
+        public virtual Main MainMenu { get; set; }
 
         public int RoleId { get; set; }
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
             
     }
 }

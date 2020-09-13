@@ -14,13 +14,12 @@ namespace UMApi.Dtos
 
         public string Action { get; set; }
 
-        public int MenuId { get; set; }
+        public int MainMenuId { get; set; }
 
         [DataMember]
         public MainDto MainMenu { get; set; }
 
         public int RoleId { get; set; }
-        [DataMember]
-        public CreateRoleDto Role { get; set; }
+        
     }
 }

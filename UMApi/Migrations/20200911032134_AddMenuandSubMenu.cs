@@ -28,8 +28,8 @@ namespace UMApi.Migrations
                     SubMenuName = table.Column<string>(nullable: true),
                     ControllerName = table.Column<string>(nullable: true),
                     Action = table.Column<string>(nullable: true),
-                    MenuId = table.Column<int>(nullable: false),
-                    MainMenuId = table.Column<int>(nullable: true),
+                   
+                    MainMenuId = table.Column<int>(nullable: false),
                     RoleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

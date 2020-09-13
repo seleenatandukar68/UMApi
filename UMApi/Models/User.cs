@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using UMApi.Models.Menus;
 
 namespace UMApi.Models
 {
@@ -26,6 +27,8 @@ namespace UMApi.Models
 
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
+
+        
 
     }
 }
