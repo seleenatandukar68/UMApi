@@ -13,7 +13,7 @@ using UMApi.Services;
 
 namespace UMApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class RoleController : ControllerBase
@@ -42,7 +42,7 @@ namespace UMApi.Controllers
             return NotFound();
         }
         //POST 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpPost("Create")]
         public ActionResult CreateRole([FromBody] CreateRoleDto roleDto)
         {

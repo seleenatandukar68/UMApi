@@ -71,7 +71,7 @@ namespace UMApi.Services
 
         public IEnumerable<User> GetAll()
         {
-            return _dbContext.Users;
+            return _dbContext.Users.Include(u => u.Role).ThenInclude(r => r.Subs).ThenInclude(s => s.MainMenu);
         }
 
         public User GetById(int id)

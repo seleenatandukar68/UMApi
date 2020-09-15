@@ -19,8 +19,7 @@ namespace UMApi.Dtos
         [DataMember]
         public virtual CreateRoleDto Role { get; set; }
 
-        [DataMember]
-        public virtual ICollection<SubDto> Subs { get; set; }
+       
 
     }
 }
