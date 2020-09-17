@@ -46,9 +46,11 @@ namespace UMApi.Controllers
         [HttpPost("Create")]
         public ActionResult CreateRole([FromBody] CreateRoleDto roleDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var userModel = _mapper.Map<Role>(roleDto);
-
-
             try
             {
                 // create user
