@@ -13,7 +13,7 @@ namespace UMApi.UnitTest
     {
         private List<Role> _roleList;
 
-       public MockRoleService()
+        public MockRoleService()
         {
             _roleList = new List<Role>
             {
@@ -85,7 +85,7 @@ namespace UMApi.UnitTest
 
         public void Update(Role user)
         {
-           //
+            //
         }
     }
 }
