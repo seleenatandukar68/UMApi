@@ -8,7 +8,7 @@ namespace UMApi.Dtos
 {
     public class CreateUserDto
     {
-        public int Id { get; set; }
+       
         [Required]
         public string FirstName { get; set; }
 
