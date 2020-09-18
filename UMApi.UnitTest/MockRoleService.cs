@@ -64,7 +64,8 @@ namespace UMApi.UnitTest
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var role = _roleList.Where(r => r.Id == id).FirstOrDefault();
+            _roleList.Remove(role);
         }
 
         public IEnumerable<Role> GetAll()
@@ -84,7 +85,7 @@ namespace UMApi.UnitTest
 
         public void Update(Role user)
         {
-            throw new NotImplementedException();
+           //
         }
     }
 }

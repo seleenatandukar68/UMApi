@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -89,6 +90,20 @@ namespace UMApi.Controllers
             _roleService.Update(roleModel);
             _roleService.SaveChanges();
             return NoContent();
+
+        }
+        //Delete Id 
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var roleModel = _roleService.GetById(id);
+            if (roleModel == null)
+            {
+                return NotFound();
+            }
+            _roleService.Delete(id);
+            _roleService.SaveChanges();
+            return Ok("Deleted");
 
         }
     }
