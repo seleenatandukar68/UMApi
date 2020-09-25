@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using UMApi.Data;
 using UMApi.Helpers;
 using UMApi.Services;
@@ -39,6 +40,12 @@ namespace UMApi
         {
             services.AddControllers();
             services.AddCors();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "User Management Api", Version = "v1" });
+            }
+                
+                );
             
 
             services.AddDbContext<UMContext>
@@ -98,7 +105,10 @@ namespace UMApi
         {
 
             app.UseRouting();
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "UMApi v1");
+            });
             // global cors policy
             app.UseCors(x => x
                 .AllowAnyOrigin()
