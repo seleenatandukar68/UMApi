@@ -71,11 +71,12 @@ namespace UMApi.Controllers
         }
 
         //GET
-        [Authorize(Roles = "1")]
+      //  [Authorize(Roles = "1")]
         [HttpGet("{id}", Name = "GetById")]
 
         public ActionResult<ReadUserDto> GetById (int id)
         {
+            
             User user = _userService.GetById(id);
             if (user != null)
             {
@@ -85,7 +86,7 @@ namespace UMApi.Controllers
         }
 
         //GET ALL
-       
+       [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<ReadUserDto>> GetAll()
         {

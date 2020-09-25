@@ -36,12 +36,12 @@ namespace UMApi.UnitTest
 
         public void SaveChanges()
         {
-            throw new NotImplementedException();
+            //
         }
 
         public void Update(User user)
         {
-            throw new NotImplementedException();
+           //
         }
     }
 }

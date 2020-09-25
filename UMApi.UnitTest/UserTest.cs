@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Moq;
 using System;
@@ -49,8 +50,12 @@ namespace UMApi.UnitTest
             mockUserService.Setup(s => s.GetById(It.IsAny<int>()))
                            .Returns((int i) => userList.Where(us => us.Id == i).FirstOrDefault());
             mockUserService.Setup(s => s.Create(It.IsAny<User>(), It.IsAny<string>())).Verifiable();
+
+      
             mockUserService.Setup(s => s.Update(It.IsAny<User>())).Verifiable();
-            mockUserService.Setup(s => s.Delete(It.IsAny<int>())).Verifiable();
+            mockUserService.Setup(s => s.Delete(It.IsAny<int>())).Callback((int id)=>
+            userList.Remove(userList.Where(us => us.Id == id).FirstOrDefault())
+            ).Verifiable();
 
             userController = new UserController(mockUserService.Object, AutomapperSingleton.Mapper, options);
         }
@@ -108,5 +113,37 @@ namespace UMApi.UnitTest
             var createResponse = userController.CreateUser(newUser) as CreatedAtActionResult;
             Assert.IsType<ReadUserDto>(createResponse.Value);
         }
+
+        [Fact]
+
+        public void Update_ValidInputs_ReturnsOk()
+        {
+            int id = 1;
+            var newUser = new CreateUserDto()
+            {
+
+                RoleId = 1,
+                FirstName = "Seleena2",
+                LastName = "Tandukar2",
+                Username = "Seleenatandukar2",
+                Password = "Password"
+            };
+            var updateResponse = userController.Update(id, newUser);
+            Assert.IsType<OkResult>(updateResponse);
+        }
+
+        [Fact]
+        public void Delete_ValidId_ReturnsOk()
+        {
+            int id = 1;
+            var deleteResponse = userController.Delete(id);
+            Assert.IsType<OkObjectResult>(deleteResponse);
+            var result = deleteResponse as OkObjectResult;
+            Assert.Equal("Deleted", result.Value);
+        }
+
+      
+      
+        
     }
 }
