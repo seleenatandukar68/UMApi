@@ -35,7 +35,7 @@ namespace UMApi.UnitTest
         public void Get_WhenCalled_ReturnsOkResult()
         {
             // Act
-            var okResult = roleController.GetAll();
+            var okResult = roleController.GetAllAsync();
             // Assert
             Assert.IsType<OkObjectResult>(okResult.Result);
         }
@@ -44,7 +44,7 @@ namespace UMApi.UnitTest
         public void Get_WhenCalled_ReturnsAllItems()
         {
             // Act
-            var okResult = roleController.GetAll().Result as OkObjectResult;
+            var okResult = roleController.GetAllAsync().Result as OkObjectResult;
             // Assert
             var items = Assert.IsType<List<CreateRoleDto>>(okResult.Value);
             Assert.Equal(3, items.Count);

@@ -70,7 +70,7 @@ namespace UMApi.Controllers
         }
         //[AllowAnonymous]
         [HttpGet]
-        public ActionResult<IEnumerable<Role>> GetAll()
+        public async Task<ActionResult<IEnumerable<Role>>> GetAllAsync()
         {
             var roleList = _roleService.GetAll();
             return Ok(_mapper.Map<IEnumerable<CreateRoleDto>>(roleList));

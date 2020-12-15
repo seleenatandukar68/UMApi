@@ -14,7 +14,7 @@ namespace UMApi.Services
         void SaveChanges();
         Role Create(Role role);
         Role GetById(int? id);
-        IEnumerable<Role> GetAll();        
+       IEnumerable<Role> GetAll();        
         void Update(Role user);
         void Delete(int id);
         
@@ -41,7 +41,7 @@ namespace UMApi.Services
 
         public IEnumerable<Role> GetAll()
         {
-            return _dbContext.Roles.Include(r => r.Subs).ThenInclude(s => s.MainMenu);
+            return  _dbContext.Roles.Include(r => r.Subs).ThenInclude(s => s.MainMenu);
         }
 
         public Role GetById(int? id)
